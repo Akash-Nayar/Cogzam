@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 def create_fingerprint(peaks, uid):
 
     """
@@ -17,11 +19,11 @@ def create_fingerprint(peaks, uid):
     """
 
     fan_out = 15
-    db = {}
+    db = defaultdict(list)
     for i, p in enumerate(peaks):
-        for j, p2 in enumerate(peaks[:i+fan_out], i):
+        for p2 in peaks[i:i+fan_out]:
             try:
-                db[(p[0], j[0], j[1]-p[1])] = (uid, p[1])
+                db[(p[0], p2[0], p2[1]-p[1])].append((uid, p[1]))
             except IndexError:
                 break
     print(str(db))
