@@ -1,9 +1,11 @@
-import populate_db
+import get_song as gs
+import peak_finding_code as pfc
 import create_val_db
-import functionstart
-import peak_finding_code
+import background_def as bd
+import create_fingerprint as cf
+import functionstart as fs
+import populate_db as pd
 import spectrogram
-import background_def
 from pathlib import Path
 import pickle
     
@@ -21,3 +23,11 @@ def path_to_db(filename, window_size, id):
     with open('fingerprints.pickle', 'rb') as handle:
         unserialized_data = pickle.load(handle)
     return len(unserialized_data)
+
+def master_tester():
+    samples = fs.use_mic()
+    spec = spectrogram.spec_creator(samples)
+    cutoff = bd.back_val_finder(spec)
+    peaks = pfc.local_peaks(spec, cutoff, 20)
+    fp = cf.create_fingerprint(peaks)
+    return gs.get_song(fp, 5, 20)
