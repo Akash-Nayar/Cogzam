@@ -23,6 +23,8 @@ def path_to_db(filepath, window_size, song_name, artist_name):
     else:
         n = 1
         song_data[n] = (song_name, artist_name)
+    with open('song_data.pickle', 'wb') as handle:
+        pickle.dump(song_data, handle, protocol=pickle.HIGHEST_PROTOCOL)
     fp = create_val_db.create_database(peaks, n)
     populate_db.populate_db(fp)
 
