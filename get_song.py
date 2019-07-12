@@ -52,13 +52,12 @@ def get_song(fingerprint, md, mt):
                 matches.append((match[0], offset))
 
     c = collections.Counter(matches)
-    top_two = c.most_common(2) # gets tuples with the top three most common based on matches
-    print(matches)
-    print(top_two)
+    top_two = c.most_common(2) # gets tuples with the top three most common based on matches    
+    
     # returns either the song data or "No Song Found"
     if top_two[0][1] > m_total:
-        song_title = song_data[top_two[0][0]][0]
-        song_artist = song_data[top_two[0][0]][1]
+        song_title = song_data[top_two[0][0][0]][0]
+        song_artist = song_data[top_two[0][0][0]][1]
         return song_title + " - " + song_artist
     else:
         return "No Song Found"
