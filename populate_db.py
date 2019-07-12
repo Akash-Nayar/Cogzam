@@ -17,6 +17,5 @@ def populate_db(fingerprints):
     #unserialized_data  = defaultdict(list)
     for key in fingerprints:
         unserialized_data[key].extend(fingerprints[key])
-    print(len(unserialized_data))
     with open('fingerprints.pickle', 'wb') as handle:
         pickle.dump(unserialized_data, handle, protocol=pickle.HIGHEST_PROTOCOL)

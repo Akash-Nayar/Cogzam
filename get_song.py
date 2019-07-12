@@ -25,8 +25,8 @@ def get_song(fingerprint):
     pickle_in = open("fingerprints.pickle", "rb")
     database = pickle.load(pickle_in)
 
-    pickle_in = open("song_data.pickle", "rb")
-    song_data = pickle.load(pickle_in)
+    pickle_in2 = open("song_data.pickle", "rb")
+    song_data = pickle.load(pickle_in2)
 
     matches = []
 
