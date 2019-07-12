@@ -48,7 +48,7 @@ def get_song(fingerprint):
     top_two = c.most_common(2) # gets tuples with the top three most common based on matches
 
     # returns either the song data or "No Song Found"
-    if len(top_two) > 0 and abs(top_two[0][1] - top_two[1][1]) > 5 and top_two[0][1] > 5:
+    if len(top_two) >= 2 and abs(top_two[0][1] - top_two[1][1]) > 5 and top_two[0][1] > 5:
         song_title = song_data[top_two[0][0]][0]
         song_artist = song_data[top_two[0][0]][1]
         return song_title + " - " + song_artist
