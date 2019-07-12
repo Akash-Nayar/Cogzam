@@ -45,7 +45,7 @@ def get_song(fingerprint):
                 offset = time_bin -  match[1]
                 matches.append((match[0], offset))
 
-    top_three = c.most_common(3) # gets tuples with the top three most common based on matches
+    top_three = c.most_common(2) # gets tuples with the top three most common based on matches
 
     # returns either the song data or "No Song Found"
     if abs(top_three[0][1] - top_three[1][1]) > 5 and top_three[0][1] > 5:
