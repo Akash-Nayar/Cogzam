@@ -6,6 +6,9 @@ Created on Fri Jul 12 08:55:10 2019
 """
 
 from numba import njit
+from scipy.ndimage.morphology import generate_binary_structure, binary_erosion 
+from scipy.ndimage.morphology import iterate_structure
+import numpy as np
 
 @njit()
 def _peaks(spec, rows, cols, amp_min):
@@ -24,7 +27,7 @@ def _peaks(spec, rows, cols, amp_min):
             if dr == 0 and dc == 0:
                 continue
 
-            # mirror over array boundary
+            # mirror over array boundary 
             if not (0 <= r + dr < spec.shape[0]):
                 dr *= -1
 
