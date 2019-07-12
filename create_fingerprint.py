@@ -8,7 +8,7 @@ def create_fingerprint(peaks):
     Parameters:
     -----------
     peaks : List[Tuple[int, int]]
-        All the peaks in (f, t) form, where f is frequency and t is time.
+        All the peaks in (t, f) form, where f is frequency and t is time.
 
     Returns:
     --------
