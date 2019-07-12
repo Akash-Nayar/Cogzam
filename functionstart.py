@@ -10,7 +10,8 @@ def use_mic():
     
     Returns
     ------------
-    
+    song_info: Tuple('string','string')
+    Strings containing Name of Song and Name of Artist
     '''
     from microphone import record_audio
     frames, sampling_rate = record_audio(10)
@@ -28,7 +29,8 @@ def test(song_path):
     
     Returns
     ------------
-    
+    song_info: Tuple('string','string')
+    Strings containing Name of Song and Name of Artist
     
     '''
     
@@ -45,7 +47,7 @@ def add_songs(song_path, name = None, artist = None):
     '''
     Inputs song path of audio file, as well as optional keyword arguments for strings which name the song and the artist
     Generates data from the audio file, then manipulates data to generate keys
-    Assigns keys to song and adds to database
+    Assigns keys to song and adds to databases containing fingerprints for song ids and song ids for song info
     Parameters
     ------------
     song_path: Path object
@@ -60,7 +62,7 @@ def add_songs(song_path, name = None, artist = None):
     
     Returns
     ------------
-    
+    None
     
     '''
 
