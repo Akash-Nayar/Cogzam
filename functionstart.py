@@ -1,4 +1,5 @@
 from pathlib import Path
+import numpy as np
 def use_mic():
     from pathlib import Path
     '''
@@ -16,7 +17,7 @@ def use_mic():
     from microphone import record_audio
     frames, sampling_rate = record_audio(10)
     listen_audio = np.hstack([np.frombuffer(i, np.int16) for i in frames])
-    return listen_audio.shape
+    return listen_audio
     
 def test(song_path):
     from pathlib import Path
