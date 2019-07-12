@@ -31,7 +31,7 @@ def get_song(fingerprint):
     matches = []
 
     m_diff = 30 # difference needed between top two if they are different
-    m_total = 75 # minimum number of matches
+    m_total = 60 # minimum number of matches
 
     # Iterate through the values within the fingerprint
     for finger in fingerprint:

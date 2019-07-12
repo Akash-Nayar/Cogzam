@@ -30,4 +30,4 @@ def master_tester():
     cutoff = bd.back_val_finder(spec)
     peaks = pfc.local_peaks(spec, cutoff, 20)
     fp = cf.create_fingerprint(peaks)
-    return gs.get_song(fp, 5, 20)
+    return gs.get_song(fp)
