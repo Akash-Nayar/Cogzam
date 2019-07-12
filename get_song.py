@@ -29,10 +29,11 @@ def get_song(fingerprint, md, mt):
     # Load pickle file with the dictionary values from database and song values
     pickle_in = open("fingerprints.pickle", "rb")
     database = pickle.load(pickle_in)
-    print(len(database))
-    #pickle_in = open("songs.pickle", "rb")
-    #song_data = pickle.load(pickle_in)
-    song_data  = {'0001':("Beautiful","Eminem"), '0002':("Shape of You","Ed Sheeran"), '0003':("Happier", "Marshmello"), '0004':("Old Town Road (Remix)", "Lil Nas X"), '0005':("MINE DIAMONDS miNECRAFT PARODY OF TAKE ON ME", "MineCraft Awesome Parodys")}
+    pickle_in = open("song_data.pickle", "rb")
+    song_data = pickle.load(pickle_in)
+    
+    
+
     #
     matches = []
 
