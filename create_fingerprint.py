@@ -24,7 +24,7 @@ def create_datatbase(peaks):
     for i, p in enumerate(peaks):
         for p2 in peaks[i:i+fan_out]:
             try:
-                fingerprint.append( (p[1], (p[0], p2[0], p2[1]-p[1])) )
+                fingerprint.append( (p[0], (p[1], p2[1], p2[0]-p[0])) )
             except IndexError:
                 break
 
