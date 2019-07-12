@@ -11,9 +11,7 @@ import pickle
     
 def path_to_db(filename, window_size, song_name, artist_name):
 
-    song_root = Path(r"C:\Users\Akash Nayar\Desktop\Cogzam\Music")
-    local_song_path = song_root / f"{filename}"
-    samples = functionstart.add_songs(local_song_path)
+    samples = functionstart.add_songs(filename)
     spec_test = spectrogram.spec_creator(samples)
     cutoff = background_def.back_val_finder(spec_test)
     peaks = peak_finding_code.local_peaks(spec_test, cutoff, window_size)
