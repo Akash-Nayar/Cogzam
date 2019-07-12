@@ -23,7 +23,9 @@ def create_fingerprint(peaks, uid):
     for i, p in enumerate(peaks):
         for p2 in peaks[i:i+fan_out]:
             try:
+
                 db[(p[0], p2[0], p2[1]-p[1])].append((uid, p[1]))
+
             except IndexError:
                 break
     print(str(db))
