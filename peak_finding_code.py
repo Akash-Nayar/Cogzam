@@ -8,6 +8,7 @@ Created on Fri Jul 12 08:55:10 2019
 from numba import njit
 from scipy.ndimage.morphology import generate_binary_structure, binary_erosion 
 from scipy.ndimage.morphology import iterate_structure
+import numpy as np
 
 @njit()
 def _peaks(spec, rows, cols, amp_min):
