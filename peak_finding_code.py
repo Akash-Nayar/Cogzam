@@ -26,7 +26,7 @@ def _peaks(spec, rows, cols, amp_min):
             if dr == 0 and dc == 0:
                 continue
 
-            # mirror over array boundary
+            # mirror over array boundary 
             if not (0 <= r + dr < spec.shape[0]):
                 dr *= -1
 
