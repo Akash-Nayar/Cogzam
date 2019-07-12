@@ -26,5 +26,4 @@ def create_database(peaks, uid):
                 db[(p[0], p2[0], p2[1]-p[1])].append((uid, p[1]))
             except IndexError:
                 break
-    print(str(db))
     return db
