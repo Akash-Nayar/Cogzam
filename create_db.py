@@ -1,21 +1,29 @@
-def populate_db(fingerprints):
+from collections import defaultdict
+
+def create_database(peaks, uid):
 
     """
-    Populates the database with fingerprints
+    Create fingerprints from the peaks of the audio to be stored in a database.
 
     Parameters:
     -----------
-    fingerprints : dict
-        Fingerprints of the peaks of a song
+    peaks : List[Tuple[int, int]]
+        All the peaks in (f, t) form, where f is frequency and t is time.
+
+    uid : String
+        id of the song.
+
+    Returns:
+    --------
+    Fingerprints in to the database
     """
 
-    import pickle
-
-    from collections import defaultdict
-    #with open('fingerprints.pickle', 'rb') as handle:
-        #unserialized_data = pickle.load(handle)
-    unserialized_data  = defaultdict(list)
-    for key in fingerprints:
-        unserialized_data[key].extend(fingerprints[key])
-    with open('fingerprints.pickle', 'wb') as handle:
-        pickle.dump(unserialized_data, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    fan_out = 15
+    db = defaultdict(list)
+    for i, p in enumerate(peaks):
+        for p2 in peaks[i:i+fan_out]:
+            try:
+                db[(p[0], p2[0], p2[1]-p[1])].append((uid, p[1]))
+            except IndexError:
+                break
+    return db

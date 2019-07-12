@@ -1,5 +1,5 @@
+import populate_db
 import create_db
-import fingerprint
 import functionstart
 import peak_finding_code
 import spectrogram
@@ -15,8 +15,8 @@ def path_to_db(filename, window_size, id):
     spec_test = spectrogram.spec_creator(samples)
     cutoff = background_def.back_val_finder(spec_test)
     peaks = peak_finding_code.local_peaks(spec_test, cutoff, window_size)
-    fp = fingerprint.create_database(peaks, id)
-    create_db.populate_db(fp)
+    fp = create_db.create_database(peaks, id)
+    populate_db.populate_db(fp)
 
     with open('fingerprints.pickle', 'rb') as handle:
         unserialized_data = pickle.load(handle)
