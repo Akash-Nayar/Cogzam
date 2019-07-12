@@ -12,7 +12,6 @@ def populate_db(fingerprints):
     import pickle
     with open('fingerprints.pickle', 'rb') as handle:
         unserialized_data = pickle.load(handle)
-    print(unserialized_data)
     for key in fingerprints:
         unserialized_data[key].extend(fingerprints[key])
     with open('fingerprints.pickle', 'wb') as handle:
