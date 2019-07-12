@@ -25,11 +25,9 @@ def get_song(fingerprint):
     pickle_in = open("fingerprints.pickle", "rb")
     database = pickle.load(pickle_in)
 
-
     pickle_in = open("song_data.pickle", "rb")
     song_data = pickle.load(pickle_in)
 
-    #song_data  = {'0001':("Beautiful","Eminem"), '0002':("Shape of You","Ed Sheeran"), '0003':("Happier", "Marshmello"), '0004':("Old Town Road (Remix)", "Lil Nas X"), '0005':("MINE DIAMONDS miNECRAFT PARODY OF TAKE ON ME", "MineCraft Awesome Parodys")}
     matches = []
 
     m_diff = 30 # difference needed between top two if they are different
