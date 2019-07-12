@@ -10,11 +10,6 @@ def populate_db(fingerprints):
     """
 
     import pickle
-
-    from collections import defaultdict
-    #with open('fingerprints.pickle', 'rb') as handle:
-        #unserialized_data = pickle.load(handle)
-    unserialized_data  = defaultdict(list)
     for key in fingerprints:
         unserialized_data[key].extend(fingerprints[key])
     with open('fingerprints.pickle', 'wb') as handle:
