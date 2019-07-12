@@ -31,7 +31,6 @@ def get_song(fingerprint):
     song_data  = {'0001':("Beautiful","Eminem"), '0002':("Shape of You","Ed Sheeran"), '0003':("Happier", "Marshmello"), '0004':("Old Town Road (Remix)", "Lil Nas X"), '0005':("MINE DIAMONDS miNECRAFT PARODY OF TAKE ON ME", "MineCraft Awesome Parodys")}
     #
     matches = []
-    c = collections.Counter(matches)
 
     # Iterate through the values within the fingerprint
     for finger in fingerprint:
@@ -45,12 +44,13 @@ def get_song(fingerprint):
                 offset = time_bin -  match[1]
                 matches.append((match[0], offset))
 
-    top_three = c.most_common(2) # gets tuples with the top three most common based on matches
+    c = collections.Counter(matches)
+    top_two = c.most_common(2) # gets tuples with the top three most common based on matches
 
     # returns either the song data or "No Song Found"
-    if abs(top_three[0][1] - top_three[1][1]) > 5 and top_three[0][1] > 5:
-        song_title = song_data[top_three[0][0]][0]
-        song_artist = song_data[top_three[0][0]][1]
+    if len(top_two) > 0 and abs(top_two[0][1] - top_two[1][1]) > 5 and top_two[0][1] > 5:
+        song_title = song_data[top_two[0][0]][0]
+        song_artist = song_data[top_two[0][0]][1]
         return song_title + " - " + song_artist
     else:
         return "No Song Found"
