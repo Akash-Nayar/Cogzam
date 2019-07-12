@@ -9,20 +9,23 @@ import spectrogram
 from pathlib import Path
 import pickle
     
-def path_to_db(filename, window_size, id):
+def path_to_db(filepath, window_size, song_name, artist_name):
 
-    song_root = Path(r"C:\Users\Akash Nayar\Desktop\Cogzam\Music")
-    local_song_path = song_root / f"{filename}"
-    samples = functionstart.add_songs(local_song_path)
+    samples = functionstart.add_songs(filepath)
     spec_test = spectrogram.spec_creator(samples)
     cutoff = background_def.back_val_finder(spec_test)
     peaks = peak_finding_code.local_peaks(spec_test, cutoff, window_size)
-    fp = create_val_db.create_database(peaks, id)
+    pickle_in = open("song_data.pickle", "rb")
+    song_data = pickle.load(pickle_in)
+    if song_data.keys():
+        n = str(int(sorted(song_data.keys())[-1])+1)
+        song_data[n] = (song_name, artist_name)
+    else:
+        n = 1
+        song_data[n] = (song_name, artist_name)
+    fp = create_val_db.create_database(peaks, n)
     populate_db.populate_db(fp)
 
-    with open('fingerprints.pickle', 'rb') as handle:
-        unserialized_data = pickle.load(handle)
-    return len(unserialized_data)
 
 def master_tester():
     samples = fs.use_mic()
