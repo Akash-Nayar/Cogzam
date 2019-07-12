@@ -21,7 +21,7 @@ def create_fingerprint(peaks, uid):
     for i, p in enumerate(peaks):
         for j, p2 in enumerate(peaks[:i+fan_out], i):
             try:
-                db[(p[0], j[0], j[1]-p[1])] = (uid, p[1])
+                db[(p[0], J[0], j[1]-p[1])] = (uid, p[1])
             except IndexError:
                 break
     print(str(db))
