@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-def create_datatbase(peaks):
+def create_fingerprint(peaks):
 
     """
     Create fingerprints from the peaks of the audio to compare against the database
