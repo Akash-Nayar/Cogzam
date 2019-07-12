@@ -39,7 +39,7 @@ def test(song_path):
     import librosa
     samples, fs = librosa.load(str(song_path), sr=44100, mono=True)
     samples*=2**15
-    return samples.shape
+    return samples
     
 
 def add_songs(song_path, name = None, artist = None):
@@ -70,8 +70,8 @@ def add_songs(song_path, name = None, artist = None):
     import librosa
     samples, fs = librosa.load(str(song_path), sr=44100, mono=True)
     samples*=2**15
-    return samples.shape
+    return samples
     
-song_root = Path(r"C:\Users\jaimo\Downloads\Cogworks Songs")
-local_song_path = song_root / r"Eminem - Stan (Long Version) ft. Dido.mp3"
+song_root = Path(r"C:\Users\Akash Nayar\Desktop\Cogzam\Music")
+local_song_path = song_root / r"Eminem - Beautiful (Official Music Video).mp3"
 test(local_song_path)
