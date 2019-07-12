@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-def create_fingerprint(peaks, uid):
+def create_datatbase(peaks, uid):
 
     """
     Create fingerprints from the peaks of the audio to be stored in a database.
