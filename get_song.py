@@ -2,7 +2,7 @@ import pickle
 import collections
 
 
-def get_song(fingerprint, md, mt):
+def get_song(fingerprint):
 
     """
     Returns the most likely song given a fingerprint of frequency and time values
@@ -14,11 +14,6 @@ def get_song(fingerprint, md, mt):
         tb - time bin of the peak
         f1/f2 - frequency bins
         time - time bin difference
-    md: int
-        number of matches different between the top two matches
-    mt: int
-        minimum number of matches for the top song
-
     Returns
     --------------------------------
     String
@@ -29,15 +24,16 @@ def get_song(fingerprint, md, mt):
     # Load pickle file with the dictionary values from database and song values
     pickle_in = open("fingerprints.pickle", "rb")
     database = pickle.load(pickle_in)
-    print(len(database))
-    #pickle_in = open("songs.pickle", "rb")
-    #song_data = pickle.load(pickle_in)
-    song_data  = {'0001':("Beautiful","Eminem"), '0002':("Shape of You","Ed Sheeran"), '0003':("Happier", "Marshmello"), '0004':("Old Town Road (Remix)", "Lil Nas X"), '0005':("MINE DIAMONDS miNECRAFT PARODY OF TAKE ON ME", "MineCraft Awesome Parodys")}
-    #
+
+
+    pickle_in = open("song_data.pickle", "rb")
+    song_data = pickle.load(pickle_in)
+
+    #song_data  = {'0001':("Beautiful","Eminem"), '0002':("Shape of You","Ed Sheeran"), '0003':("Happier", "Marshmello"), '0004':("Old Town Road (Remix)", "Lil Nas X"), '0005':("MINE DIAMONDS miNECRAFT PARODY OF TAKE ON ME", "MineCraft Awesome Parodys")}
     matches = []
 
-    m_diff = md
-    m_total = mt
+    m_diff = 30 # difference needed between top two if they are different
+    m_total = 75 # minimum number of matches
 
     # Iterate through the values within the fingerprint
     for finger in fingerprint:
@@ -55,7 +51,11 @@ def get_song(fingerprint, md, mt):
     top_two = c.most_common(2) # gets tuples with the top three most common based on matches    
     
     # returns either the song data or "No Song Found"
-    if top_two[0][1] > m_total:
+    if top_two[0][0] == top_two[1][0] and top_two[0][1] + top_two[1][1] >= m_total:
+        song_title = song_data[top_two[0][0][0]][0]
+        song_artist = song_data[top_two[0][0][0]][1]
+        return song_title + " - " + song_artist
+    elif top_two[0][1] - top_two[1][1] >= m_diff and top_two[0][1] >= m_total:
         song_title = song_data[top_two[0][0][0]][0]
         song_artist = song_data[top_two[0][0][0]][1]
         return song_title + " - " + song_artist
