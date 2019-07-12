@@ -36,3 +36,14 @@ def master_tester():
     peaks = pfc.local_peaks(spec, cutoff, 20)
     fp = cf.create_fingerprint(peaks)
     return gs.get_song(fp, 5, 20)
+
+def manual_input():
+    #PUT YOUR PATH TO MUSIC FOLDER HERE
+    song_root = Path(r"path")
+    files = song_root.glob('*.mp3')
+    for i in files:
+        local_song_path = song_root / i
+        print(str(local_song_path))
+        name = input('Name: ')
+        artist = input('Artist: ')
+        main.path_to_db(local_song_path, 20, name, artist)
