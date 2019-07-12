@@ -1,5 +1,5 @@
 
-
+import numpy as np
 from scipy.ndimage.filters import maximum_filter
 from scipy.ndimage.morphology import generate_binary_structure, binary_erosion
 from scipy.ndimage.morphology import iterate_structure
@@ -30,3 +30,5 @@ def back_val_finder(S):
     bin_index_of_cutoff = np.searchsorted(cumulative_distr, 0.77)
 
     cutoff_log_amplitude = bin_edges[bin_index_of_cutoff]
+
+    return cutoff_log_amplitude
