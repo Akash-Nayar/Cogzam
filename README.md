@@ -1,3 +1,1 @@
 # Cogzam
-
-Gang gang
