@@ -3,10 +3,11 @@
 from scipy.ndimage.filters import maximum_filter
 from scipy.ndimage.morphology import generate_binary_structure, binary_erosion
 from scipy.ndimage.morphology import iterate_structure
-
+import numpy as np
 
 
 def back_val_finder(S):
+    import numpy as np
     """
     Will take in our log(cks)
     and will solve for our determining value "cutoff"
