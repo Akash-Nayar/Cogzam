@@ -1,4 +1,5 @@
 from pathlib import Path
+import numpy as np
 def use_mic():
     from pathlib import Path
     '''
