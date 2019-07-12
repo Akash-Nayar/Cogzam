@@ -11,14 +11,14 @@ import pickle
     
 def path_to_db(filepath, window_size, song_name, artist_name):
 
-    samples = functionstart.add_songs(filepath)
+    samples = fs.add_songs(filepath)
     spec_test = spectrogram.spec_creator(samples)
-    cutoff = background_def.back_val_finder(spec_test)
-    peaks = peak_finding_code.local_peaks(spec_test, cutoff, window_size)
+    cutoff = bd.back_val_finder(spec_test)
+    peaks = pfc.local_peaks(spec_test, cutoff, window_size)
     pickle_in = open("song_data.pickle", "rb")
     song_data = pickle.load(pickle_in)
     if song_data.keys():
-        n = str(int(sorted(song_data.keys())[-1])+1)
+        n = int(sorted(song_data.keys())[-1])+1
         song_data[n] = (song_name, artist_name)
     else:
         n = 1
@@ -26,7 +26,7 @@ def path_to_db(filepath, window_size, song_name, artist_name):
     with open('song_data.pickle', 'wb') as handle:
         pickle.dump(song_data, handle, protocol=pickle.HIGHEST_PROTOCOL)
     fp = create_val_db.create_database(peaks, n)
-    populate_db.populate_db(fp)
+    pd.populate_db(fp)
 
 
 def master_tester():

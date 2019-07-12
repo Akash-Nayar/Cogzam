@@ -29,9 +29,8 @@ def get_song(fingerprint, md, mt):
     # Load pickle file with the dictionary values from database and song values
     pickle_in = open("fingerprints.pickle", "rb")
     database = pickle.load(pickle_in)
-    pickle_in = open("song_data.pickle", "rb")
-    song_data = pickle.load(pickle_in)
-    
+    pickle_in2 = open("song_data.pickle", "rb")
+    song_data = pickle.load(pickle_in2)
     
 
     #
