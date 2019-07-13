@@ -2,7 +2,7 @@ import pickle
 import collections
 
 
-def get_song(fingerprint, md, mt):
+def get_song(fingerprint):
 
     """
     Returns the most likely song given a fingerprint of frequency and time values
@@ -36,8 +36,8 @@ def get_song(fingerprint, md, mt):
     #
     matches = []
 
-    m_diff = md
-    m_total = mt
+    m_diff = 5
+    m_total = 30
 
     # Iterate through the values within the fingerprint
     for finger in fingerprint:
@@ -55,7 +55,7 @@ def get_song(fingerprint, md, mt):
     top_two = c.most_common(2) # gets tuples with the top three most common based on matches    
     
     # returns either the song data or "No Song Found"
-    if top_two[0][1] > m_total:
+    if (top_two[0][1] > m_total):
         song_title = song_data[top_two[0][0][0]][0]
         song_artist = song_data[top_two[0][0][0]][1]
         return song_title + " - " + song_artist
