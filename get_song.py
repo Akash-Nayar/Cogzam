@@ -2,7 +2,7 @@ import pickle
 import collections
 
 
-def get_song(fingerprint, md, mt):
+def get_song(fingerprint, md, mt, song_datadb = "song_data.pickle",fingerprintsdb = 'fingerprints.pickle'):
 
     """
     Returns the most likely song given a fingerprint of frequency and time values
@@ -27,9 +27,9 @@ def get_song(fingerprint, md, mt):
 
     
     # Load pickle file with the dictionary values from database and song values
-    pickle_in = open("fingerprints.pickle", "rb")
+    pickle_in = open(fingerprintsdb, "rb")
     database = pickle.load(pickle_in)
-    pickle_in2 = open("song_data.pickle", "rb")
+    pickle_in2 = open(song_datadb, "rb")
     song_data = pickle.load(pickle_in2)
     
 

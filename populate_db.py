@@ -1,4 +1,4 @@
-def populate_db(fingerprints):
+def populate_db(fingerprints, fingerprintsdb = 'fingerprints.pickle'):
 
     """
     Populates the database with fingerprints
@@ -12,10 +12,10 @@ def populate_db(fingerprints):
     import pickle
 
     from collections import defaultdict
-    with open('fingerprints.pickle', 'rb') as handle:
+    with open(fingerprintsdb, 'rb') as handle:
         unserialized_data = pickle.load(handle)
     #unserialized_data  = defaultdict(list)
     for key in fingerprints:
         unserialized_data[key].extend(fingerprints[key])
-    with open('fingerprints.pickle', 'wb') as handle:
+    with open(fingerprintsdb, 'wb') as handle:
         pickle.dump(unserialized_data, handle, protocol=pickle.HIGHEST_PROTOCOL)
