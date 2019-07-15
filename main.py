@@ -37,10 +37,20 @@ def master_tester(song_datadb1 = "song_data.pickle",fingerprintsdb1 = 'fingerpri
     fp = cf.create_fingerprint(peaks)
     return gs.get_song(fp, song_datadb = song_datadb1, fingerprintsdb = fingerprintsdb1)
 
-def manual_input(song_datadb1 = "song_data.pickle", fingerprintsdb1 = 'fingerprints.pickle'):
-    #PUT YOUR PATH TO MUSIC FOLDER HERE
-    song_root = Path(r"path")
-    files = song_root.glob('*.mp3')
+def manual_input(folder_path, filetype = ".mp3", song_datadb1 = "song_data.pickle", fingerprintsdb1 = 'fingerprints.pickle'):
+    """
+    Parameters
+    ------------
+    folder_path: Path object
+    Path of music folder which you want to add into the database
+    
+    filetype: str object
+    name of file type which you want to include in the input; includes the dot before file abbreviation (e.g. ".mp3")
+    
+    Globs all files of given file format
+    Allows manual input of song and artist name after prompted with file name
+    """
+    files = folder_path.glob('*' + filetype)
     for i in files:
         local_song_path = song_root / i
         print(str(local_song_path))
