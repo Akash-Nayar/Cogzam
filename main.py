@@ -35,7 +35,7 @@ def master_tester(song_datadb1 = "song_data.pickle",fingerprintsdb1 = 'fingerpri
     cutoff = bd.back_val_finder(spec)
     peaks = pfc.local_peaks(spec, cutoff, 20)
     fp = cf.create_fingerprint(peaks)
-    return gs.get_song(fp, 5, 20, song_datadb = song_datadb1, fingerprintsdb = fingerprintsdb1)
+    return gs.get_song(fp, song_datadb = song_datadb1, fingerprintsdb = fingerprintsdb1)
 
 def manual_input(song_datadb1 = "song_data.pickle", fingerprintsdb1 = 'fingerprints.pickle'):
     #PUT YOUR PATH TO MUSIC FOLDER HERE
