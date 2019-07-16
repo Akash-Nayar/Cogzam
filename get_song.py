@@ -1,7 +1,7 @@
 import pickle
 import collections
 
-def get_song(fingerprint, song_datadb = "song_data.pickle",fingerprintsdb = 'fingerprints.pickle'):
+def get_song(fingerprint, song_data_from = "song_data.pickle",fingerprints_from = 'fingerprints.pickle'):
 
 
     """
@@ -27,9 +27,9 @@ def get_song(fingerprint, song_datadb = "song_data.pickle",fingerprintsdb = 'fin
 
     
     # Load pickle file with the dictionary values from database and song values
-    pickle_in = open(fingerprintsdb, "rb")
+    pickle_in = open(fingerprints_from, "rb")
     database = pickle.load(pickle_in)
-    pickle_in2 = open(song_datadb, "rb")
+    pickle_in2 = open(song_data_from, "rb")
     song_data = pickle.load(pickle_in2)
     
 

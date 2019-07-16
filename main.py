@@ -9,13 +9,13 @@ import spectrogram
 from pathlib import Path
 import pickle
     
-def path_to_db(filepath, window_size, song_name, artist_name, song_datadb = "song_data.pickle",fingerprintsdb1 = 'fingerprints.pickle'):
+def path_to_db(filepath, window_size, song_name, artist_name, song_data_to = "song_data.pickle",fingerprints_to = 'fingerprints.pickle'):
 
     samples = fs.add_songs(filepath)
     spec_test = spectrogram.spec_creator(samples)
     cutoff = bd.back_val_finder(spec_test)
     peaks = pfc.local_peaks(spec_test, cutoff, window_size)
-    pickle_in = open(song_datadb, "rb")
+    pickle_in = open(song_data_to, "rb")
     song_data = pickle.load(pickle_in)
     if song_data.keys():
         n = int(sorted(song_data.keys())[-1])+1
@@ -23,21 +23,21 @@ def path_to_db(filepath, window_size, song_name, artist_name, song_datadb = "son
     else:
         n = 1
         song_data[n] = (song_name, artist_name)
-    with open(song_datadb, 'wb') as handle:
+    with open(song_data_to, 'wb') as handle:
         pickle.dump(song_data, handle, protocol=pickle.HIGHEST_PROTOCOL)
     fp = create_val_db.create_database(peaks, n)
-    pd.populate_db(fp, fingerprintsdb = fingerprintsdb1)
+    pd.populate_db(fp, fingerprintsdb = fingerprints_to)
 
 
-def master_tester(song_datadb1 = "song_data.pickle",fingerprintsdb1 = 'fingerprints.pickle'):
+def master_tester(song_datadb = "song_data.pickle",fingerprintsdb = 'fingerprints.pickle'):
     samples = fs.use_mic()
     spec = spectrogram.spec_creator(samples)
     cutoff = bd.back_val_finder(spec)
     peaks = pfc.local_peaks(spec, cutoff, 20)
     fp = cf.create_fingerprint(peaks)
-    return gs.get_song(fp, song_datadb = song_datadb1, fingerprintsdb = fingerprintsdb1)
+    return gs.get_song(fp, song_data_from = song_datadb, fingerprints_from = fingerprintsdb)
 
-def manual_input(folder_path, filetype = ".mp3", song_datadb1 = "song_data.pickle", fingerprintsdb1 = 'fingerprints.pickle'):
+def manual_input(folder_path, filetype = ".mp3", song_datadb = "song_data.pickle", fingerprintsdb = 'fingerprints.pickle'):
     """
     Parameters
     ------------
@@ -56,4 +56,4 @@ def manual_input(folder_path, filetype = ".mp3", song_datadb1 = "song_data.pickl
         print(str(local_song_path))
         name = input('Name: ')
         artist = input('Artist: ')
-        main.path_to_db(local_song_path, 20, name, artist, song_datadb = song_datadb1, fingerprintsdb = fingerprintsdb1)
+        main.path_to_db(local_song_path, 20, name, artist, song_data_to = song_datadb, fingerprints_to = fingerprintsdb)
